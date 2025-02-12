@@ -18,3 +18,4 @@ m=[12,34,54]
 k=l+m#make a nwe with both l and m
 l.extend(m)
 print(l)
+print(l)
