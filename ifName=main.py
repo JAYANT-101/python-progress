@@ -1,0 +1,2 @@
+import testjs
+testjs.hi()
