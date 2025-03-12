@@ -1,9 +1,17 @@
 class book:
-    def bookchek(self):
-        allbook=["jonbububla","chitifur noland","kaju kateli","dandadan"]
-        print(len(allbook))
-        if len(allbook) <= 3:
-            print("All books are not present")
-        else:print("every book is present")
+    def __init__(self):
+        self.nobook=0
+        self.allbook=[]
+
+    def addbook(self,book):
+        self.allbook.append(book)
+        self.nobook=len(self.allbook)
+    def ShowInfo(self):
+        print(f"The count of the books are {self.nobook} and the books are")
+        for i in self.allbook:
+            print(i)
 a=book()
-a.bookchek()
+a.addbook("tipu")
+a.addbook("tipu2")
+a.addbook("daadaddna")
+a.ShowInfo()
