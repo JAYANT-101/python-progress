@@ -21,3 +21,14 @@ print(str1.istitle())#ives ture of first letter is capital
 print(str1.startswith("welcome"))
 print(blog.swapcase())#swapes between upper and lower case both way
 print(str1.title())
+
+#String.py
+name="jayant sinha"
+s="this \"appel\" is busseing"
+b='''my name is jayant
+and i have a dream'''
+print(s)
+print(b)
+print(name[0])
+for c in name:
+    print(c)
