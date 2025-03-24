@@ -15,3 +15,8 @@ usingFor()
 t2 =time.time()-init
 print(t1)
 print(t2)
+time.sleep(3)
+print("this is the sleep function")
+t=time.localtime()
+foematted_time=time.strftime("%Y-%M-%d %H:%M:%S",t)
+print(foematted_time)
