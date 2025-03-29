@@ -10,7 +10,7 @@ print(blog.capitalize())
 str1="welcome to here"
 print(str1.center(50))
 print(a.count("harry"))
-print(str1.endswith("here"))#can also chak  it any where by using index value 4,10
+print(str1.endswith("here"))#can also chak  it anywhere by using index value 4,10
 print(str1.find("to"))#if nothing found it gives 1
 # print(str1.index("ishh")) will give an exseption if match no found
 print(str1.isalnum())#will give ture if the  string is made of a-z and 0-9
