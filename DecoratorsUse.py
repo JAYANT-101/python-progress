@@ -34,3 +34,9 @@ print(c.num)
 c.num=3
 print(c.num)
 del c.num
+#----------------------------------------------------------------------------------------------------------------
+class Mc:
+    @staticmethod
+    def add(a,b):
+        return a+b
+print(Mc.add(1,2))
