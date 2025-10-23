@@ -40,3 +40,17 @@ class Mc:
     def add(a,b):
         return a+b
 print(Mc.add(1,2))
+#-------------------------------------------------------------------------------------------------------------------
+class Bc:
+    call=234
+    def __init__(self, num: int)->None:
+        self.num = num
+    def printname(self)->str:
+        return "hello"
+    @classmethod
+    def cll(cls):
+        print(cls.call)
+        mc=Bc(2)
+        print(mc.printname())
+m=Bc(12)
+m.cll()
