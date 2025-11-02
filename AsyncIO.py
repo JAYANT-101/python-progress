@@ -96,3 +96,17 @@ async def main6():
     semaphore = asyncio.Semaphore(2)
     await asyncio.gather(*(access_resource(semaphore, i) for i in range(5)))
 asyncio.run(main6())
+#---------------------------------------------------------------------------------------------------------------------------------
+async def waiter(event):
+    print("Wait for event to be set")
+    await event.wait()
+    print("Event has been continuing execution")
+async def setter(event):
+    await asyncio.sleep(2)
+    event.set()
+    print("Event has been set!")
+async def main7():
+    event = asyncio.Event()
+    await  asyncio.gather(waiter(event), setter(event))
+
+asyncio.run(main7())
