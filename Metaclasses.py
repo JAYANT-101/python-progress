@@ -26,3 +26,8 @@ class test(metaclass=Meta):
     b="jayant"
     def hello(self):
         print("hi")
+d=test()
+# d.x
+#will not work
+# print(d.hello())
+d.HELLO()
