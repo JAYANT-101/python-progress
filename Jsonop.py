@@ -6,6 +6,7 @@ data = {
     "isStudent": False,
     "courses": ["Math", "Science"]
 }
+
 json_string = json.dumps(data, indent=4)  # indent for pretty-printing
 print(json_string)
 
