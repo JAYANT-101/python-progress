@@ -10,7 +10,8 @@ for root, dirs, files in os.walk(path):
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
                 data = content.split(',')
-                tdata[tuple(label)] = data
+                cpu=tuple(label)
+                tdata[cpu] = data
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
 print(tdata)
