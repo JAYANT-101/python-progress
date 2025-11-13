@@ -14,4 +14,5 @@ for root, dirs, files in os.walk(path):
                 tdata[cpu] = data
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
-print(tdata)
+kk=pd.DataFrame(tdata)
+print(kk)
