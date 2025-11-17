@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+from attr.setters import convert
+
 tdata={}
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress/swimdata"
 for root, dirs, files in os.walk(PATH):
@@ -12,16 +14,17 @@ for root, dirs, files in os.walk(PATH):
                 replacements = content.maketrans(":.","  ")
                 new_content = content.translate(replacements)
                 data = new_content.strip().split(',')
+                convert_time=[]
                 for i in range(len(data)):
                     time=data[i].split(' ')
                     if len(time) >= 3:
                         mint, sec, milsec = time
-                        avg_time=(int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec)
+                        convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
                     else:
-                        avg_time=(int(sec) * 100) + int(milsec)
+                        convert_time.append((int(sec) * 100) + int(milsec))
 
                 cpu=tuple(label)
-                tdata[cpu] = data, avg_time
+                tdata[cpu] = data, convert_time
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
 print(tdata)
