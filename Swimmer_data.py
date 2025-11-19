@@ -24,7 +24,8 @@ for root, dirs, files in os.walk(PATH):
                         convert_time.append((int(sec) * 100) + int(milsec))
 
                 cpu=tuple(label)
-                tdata[cpu] = data, statistics.mean(convert_time)
+                raw_avg_time=statistics.mean(convert_time)
+                tdata[cpu] = data
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
 print(tdata)
