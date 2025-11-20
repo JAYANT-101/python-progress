@@ -3,7 +3,7 @@ import pandas as pd
 import statistics
 
 tdata={}
-PATH =r"C:\Users\jayan\PycharmProjects\python-progress/swimdata"
+PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 for root, dirs, files in os.walk(PATH):
     for file_name in files:
         label=file_name[:-4].split('-')
