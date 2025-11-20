@@ -4,9 +4,9 @@ import statistics
 
 tdata={}
 
-def open_and_convert(file_name, root):
+def open_and_convert(filename, root_name):
     label = file_name[:-4].split('-')
-    file_path = os.path.join(root, file_name)  # Construct the full file path
+    file_path = os.path.join(root_name, filename)  # Construct the full file path
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -24,7 +24,7 @@ def open_and_convert(file_name, root):
 
             cpu = tuple(label)
             raw_avg_time = statistics.mean(convert_time)
-            tdata[cpu] = data
+            tdata[cpu] = data, raw_avg_time
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
