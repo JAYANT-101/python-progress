@@ -2,6 +2,9 @@ import os
 import pandas as pd
 import statistics
 
+def time_convert_to_string(raw_time):
+    pass
+
 def open_and_convert(filename, root_name):
     label = file_name[:-4].split('-')
     file_path = os.path.join(root_name, filename)  # Construct the full file path
@@ -23,7 +26,8 @@ def open_and_convert(filename, root_name):
 
             swimmer_details = tuple(label)
             raw_avg_time = statistics.mean(convert_time)
-            return filedata, raw_avg_time, swimmer_details
+            total_time = time_convert_to_string(raw_avg_time)
+            return filedata, total_time, swimmer_details
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
