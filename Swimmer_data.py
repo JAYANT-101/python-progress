@@ -23,14 +23,14 @@ def open_and_convert(filename, root_name):
 
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-            print(content)
+            filedata = content.strip().split(',')
             replacements = content.maketrans(":.", "  ")
             new_content = content.translate(replacements)
-            filedata = new_content.strip().split(',')
-            convert_time = []
+            mod_filedata = new_content.strip().split(',')
 
-            for i in range(len(filedata)):
-                time = filedata[i].split(' ')
+            convert_time = []
+            for i in range(len(mod_filedata)):
+                time = mod_filedata[i].split(' ')
                 if len(time) >= 3:
                     mint, sec, milsec = time
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
@@ -42,12 +42,14 @@ def open_and_convert(filename, root_name):
             raw_avg_time = statistics.mean(convert_time)
             total_time = time_convert_to_string(raw_avg_time, swimmer_details[2])
             return filedata, total_time, swimmer_details
+
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
 tdata={}
 
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+
 for root, dirs, files in os.walk(PATH):
     for file_name in files:
         data = open_and_convert(file_name, root)
