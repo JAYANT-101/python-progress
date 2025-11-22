@@ -56,5 +56,4 @@ for root, dirs, files in os.walk(PATH):
         list_of_time, raw_ang_time, swimmers_details = data
         tdata[swimmers_details] = list_of_time,raw_ang_time
 
-
 print(tdata)
