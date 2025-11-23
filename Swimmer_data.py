@@ -15,7 +15,7 @@ def time_convert_to_string(raw_time, category):
         return string_time
 
 def open_and_convert(filename, root_name):
-    label = file_name[:-4].split('-')
+    label = filename[:-4].split('-')
     file_path = os.path.join(root_name, filename)  # Construct the full file path
 
     try:
@@ -47,12 +47,13 @@ def open_and_convert(filename, root_name):
 
 tdata={}
 
+def file_opener(path):
+    for root, dirs, files in os.walk(path):
+        for file_name in files:
+            data = open_and_convert(file_name, root)
+            list_of_time, raw_ang_time, swimmers_details = data
+            tdata[swimmers_details] = list_of_time,raw_ang_time
+
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-
-for root, dirs, files in os.walk(PATH):
-    for file_name in files:
-        data = open_and_convert(file_name, root)
-        list_of_time, raw_ang_time, swimmers_details = data
-        tdata[swimmers_details] = list_of_time,raw_ang_time
-
+file_opener(PATH)
 print(tdata)
