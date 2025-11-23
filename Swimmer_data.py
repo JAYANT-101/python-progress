@@ -14,7 +14,6 @@ def time_convert_to_string(raw_time, category):
         string_time = f"{mint}:{sec}.{milsec}"
         return string_time
 
-
 def open_and_convert(filename, root_name):
     label = file_name[:-4].split('-')
     file_path = os.path.join(root_name, filename)  # Construct the full file path
