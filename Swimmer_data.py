@@ -55,5 +55,6 @@ def file_opener(path):
             tdata[swimmers_details] = list_of_time,raw_ang_time
 
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+
 file_opener(PATH)
 print(tdata)
