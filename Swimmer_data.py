@@ -45,16 +45,19 @@ def open_and_convert(filename, root_name):
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
-tdata={}
+# tdata={}
 
 def file_opener(path):
     for root, dirs, files in os.walk(path):
+        tdata = {}
         for file_name in files:
             data = open_and_convert(file_name, root)
             list_of_time, raw_ang_time, swimmers_details = data
             tdata[swimmers_details] = list_of_time,raw_ang_time
+        return tdata
+    return None
+
 
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 
-file_opener(PATH)
-print(tdata)
+print(file_opener(PATH))
