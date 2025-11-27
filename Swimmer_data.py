@@ -1,7 +1,9 @@
 import os
 import pandas as pd
 import statistics
+import time
 
+start_time = time.time()
 def time_convert_to_string(raw_time, category):
 
     if category == "50m":
@@ -60,4 +62,7 @@ def file_opener(path):
 
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 
+
 print(file_opener(PATH))
+end_time = time.time()
+print(end_time - start_time)
