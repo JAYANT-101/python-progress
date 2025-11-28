@@ -34,7 +34,7 @@ def open_and_convert(filename, root_name):
             mint = int(min_sec) // 60
             sec = int(min_sec) - mint * 60
             string_time = f"{mint}:{sec}.{milsec}"
-            return filedata, string_time, label
+            return label, filedata, string_time,
 
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
@@ -42,11 +42,12 @@ def open_and_convert(filename, root_name):
 # tdata={}
 
 def file_opener(path):
+    full_data = []
     for root, dirs, files in os.walk(path):
         for file_name in files:
             data = open_and_convert(file_name, root)
-            list_of_time, string_ang_time, swimmers_details = data
-        return list_of_time, string_ang_time, swimmers_details
+            full_data.append(data)
+        return full_data
     return None
 
 
