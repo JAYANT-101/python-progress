@@ -5,16 +5,11 @@ import time
 
 start_time = time.time()
 def time_convert_to_string(raw_time, category):
-
-    if category == "50m":
-        string_time = str(round(raw_time/100, 2))
-        return string_time
-    else:
-        min_sec, milsec = str(round(raw_time/100, 2)).split('.')
-        mint = int(min_sec)//60
-        sec = int(min_sec) -  mint*60
-        string_time = f"{mint}:{sec}.{milsec}"
-        return string_time
+    min_sec, milsec = str(round(raw_time/100, 2)).split('.')
+    mint = int(min_sec)//60
+    sec = int(min_sec) -  mint*60
+    string_time = f"{mint}:{sec}.{milsec}"
+    return string_time
 
 def open_and_convert(filename, root_name):
     label = filename[:-4].split('-')
@@ -36,13 +31,13 @@ def open_and_convert(filename, root_name):
                     mint, sec, milsec = time
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
                 else:
+                    mint = 0
                     sec, milsec = time
-                    convert_time.append((int(sec) * 100) + int(milsec))
+                    convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
 
-            swimmer_details = tuple(label)
             raw_avg_time = statistics.mean(convert_time)
-            total_time = time_convert_to_string(raw_avg_time, swimmer_details[2])
-            return filedata, total_time, swimmer_details
+            total_time = time_convert_to_string(raw_avg_time, label[2])
+            return filedata, total_time, label
 
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
@@ -51,12 +46,10 @@ def open_and_convert(filename, root_name):
 
 def file_opener(path):
     for root, dirs, files in os.walk(path):
-        tdata = {}
         for file_name in files:
             data = open_and_convert(file_name, root)
-            list_of_time, raw_ang_time, swimmers_details = data
-            tdata[swimmers_details] = list_of_time,raw_ang_time
-        return tdata
+            list_of_time, string_ang_time, swimmers_details = data
+        return list_of_time, string_ang_time, swimmers_details
     return None
 
 
