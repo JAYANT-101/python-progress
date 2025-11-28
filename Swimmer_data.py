@@ -4,12 +4,6 @@ import statistics
 import time
 
 start_time = time.time()
-def time_convert_to_string(raw_time, category):
-    min_sec, milsec = str(round(raw_time/100, 2)).split('.')
-    mint = int(min_sec)//60
-    sec = int(min_sec) -  mint*60
-    string_time = f"{mint}:{sec}.{milsec}"
-    return string_time
 
 def open_and_convert(filename, root_name):
     label = filename[:-4].split('-')
@@ -36,8 +30,11 @@ def open_and_convert(filename, root_name):
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
 
             raw_avg_time = statistics.mean(convert_time)
-            total_time = time_convert_to_string(raw_avg_time, label[2])
-            return filedata, total_time, label
+            min_sec, milsec = str(round(raw_avg_time / 100, 2)).split('.')
+            mint = int(min_sec) // 60
+            sec = int(min_sec) - mint * 60
+            string_time = f"{mint}:{sec}.{milsec}"
+            return filedata, string_time, label
 
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
