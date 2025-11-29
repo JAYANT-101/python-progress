@@ -6,6 +6,9 @@ import time
 start_time = time.time()
 
 def open_and_convert(filename, root_name):
+    """this function will take to arguments file name and the root the files are in then it will open thous file read the data
+     and then calculate the avg time and convert that avg time to sting. this function returns three variables label which have
+     the swimmer's data, filedata the data in the file and string time which is the avg time of the swimmer's in string"""
     label = filename[:-4].split('-')
     file_path = os.path.join(root_name, filename)  # Construct the full file path
 
@@ -39,9 +42,10 @@ def open_and_convert(filename, root_name):
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
-# tdata={}
 
 def file_opener(path):
+    """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
+     this function takes one argument which is path the path is the location of the folder the swimmer's data is in """
     full_data = []
     for root, dirs, files in os.walk(path):
         for file_name in files:
