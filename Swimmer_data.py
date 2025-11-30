@@ -37,7 +37,7 @@ def open_and_convert(filename, root_name):
             mint = int(min_sec) // 60
             sec = int(min_sec) - mint * 60
             string_time = f"{mint}:{sec}.{milsec}"
-            return label, filedata, string_time,
+            return label, filedata, string_time, convert_time
 
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
