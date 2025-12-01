@@ -6,6 +6,33 @@ import time
 
 start_time = time.time()
 
+def make_html(details, times, avg_time, raw_time):
+    """this make html"""
+
+    name, age, distance, stroke = details
+    top = f"""<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {name}-{age}-{distance}-{stroke}
+        </title>
+    </head>
+    <body>
+        <h3>A simple bar chart</h3>"""
+    middle = ""
+    for n, t in enumerate(times):
+        bar_wreath = Scaler.scaled_number(raw_time[n], 0, max(raw_time), 0, 400)
+        middle = middle + f"""
+        <svg height="30" width="400">
+            <rect height="30" width="{bar_wreath}" style="fill:rgb(0,0,255);" />
+        </svg>{t}<br />"""
+    lower = f"""<p>Average:{avg_time}</p>
+    </body>
+</html>"""
+    return top + middle + lower
+
+
+
 def open_and_convert(filename, root_name):
     """this function will take to arguments file name and the root the files are in then it will open thous file read the data
      and then calculate the avg time and convert that avg time to sting. this function returns three variables label which have
@@ -44,22 +71,16 @@ def open_and_convert(filename, root_name):
         print(f"Error reading {file_path}: {e}")
 
 
-def file_opener(path):
+def file_opener(path) -> None:
     """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
      this function takes one argument which is path the path is the location of the folder the swimmer's data is in """
-    full_data = []
     for root, dirs, files in os.walk(path):
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            scaled_time = []
-            for n in convert_time:
-                scaled = Scaler.scaled_number(n, 0, max(convert_time), 0, 400 )
-                scaled_time.append(scaled)
-            compleat_data = [summers_details, times, avg_time, scaled_time]
-            full_data.append(compleat_data)
-        return full_data
-    return None
+            b=make_html(summers_details, times, avg_time, convert_time)
+            print(b)
+
 
 
 PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
