@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import statistics
+import Scaler
 import time
 
 start_time = time.time()
@@ -50,7 +51,13 @@ def file_opener(path):
     for root, dirs, files in os.walk(path):
         for file_name in files:
             data = open_and_convert(file_name, root)
-            full_data.append(data)
+            summers_details, times, avg_time, convert_time = data
+            scaled_time = []
+            for n in convert_time:
+                scaled = Scaler.scaled_number(n, 0, max(convert_time), 0, 400 )
+                scaled_time.append(scaled)
+            compleat_data = [summers_details, times, avg_time, scaled_time]
+            full_data.append(compleat_data)
         return full_data
     return None
 
