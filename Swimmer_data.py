@@ -25,11 +25,11 @@ def open_and_convert(filename, root_name):
             for i in range(len(mod_filedata)):
                 times = mod_filedata[i].split(' ')
                 if len(times) >= 3:
-                    mint, sec, milsec = time
+                    mint, sec, milsec = times
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
                 else:
                     mint = 0
-                    sec, milsec = time
+                    sec, milsec = times
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
 
             raw_avg_time = statistics.mean(convert_time)
