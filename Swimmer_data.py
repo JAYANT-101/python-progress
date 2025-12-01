@@ -23,8 +23,8 @@ def open_and_convert(filename, root_name):
 
             convert_time = []
             for i in range(len(mod_filedata)):
-                time = mod_filedata[i].split(' ')
-                if len(time) >= 3:
+                times = mod_filedata[i].split(' ')
+                if len(times) >= 3:
                     mint, sec, milsec = time
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
                 else:
