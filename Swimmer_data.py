@@ -20,12 +20,12 @@ def make_html(details, times, avg_time, raw_time, file_location):
     <body>
         <h3>{name}-{age}-{distance}-{stroke}</h3>"""
     middle = ""
-    for n, t in enumerate(times):
-        bar_wreath = Scaler.scaled_number(raw_time[n], 0, max(raw_time), 0, 400)
+    for i in range(len(times)-1, -1, -1):
+        bar_wreath = Scaler.scaled_number(raw_time[i], 0, max(raw_time), 0, 350)
         middle = middle + f"""
         <svg height="30" width="400">
             <rect height="30" width="{bar_wreath}" style="fill:rgb(0,0,255);" />
-        </svg>{t}<br />"""
+        </svg>{times[i]}<br />"""
     lower = f"""<p>Average:{avg_time}</p>
     </body>
 </html>"""
