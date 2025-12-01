@@ -6,7 +6,7 @@ import time
 
 start_time = time.time()
 
-def make_html(details, times, avg_time, raw_time):
+def make_html(details, times, avg_time, raw_time, file_location):
     """this make html"""
 
     name, age, distance, stroke = details
@@ -18,7 +18,7 @@ def make_html(details, times, avg_time, raw_time):
         </title>
     </head>
     <body>
-        <h3>A simple bar chart</h3>"""
+        <h3>{name}-{age}-{distance}-{stroke}</h3>"""
     middle = ""
     for n, t in enumerate(times):
         bar_wreath = Scaler.scaled_number(raw_time[n], 0, max(raw_time), 0, 400)
@@ -29,9 +29,13 @@ def make_html(details, times, avg_time, raw_time):
     lower = f"""<p>Average:{avg_time}</p>
     </body>
 </html>"""
-    return top + middle + lower
-
-
+    try:
+        # os.makedirs(file_location)
+        with open(f"{file_location}/{name}-{age}-{distance}-{stroke}.html", "w") as file:
+            file.write(top+middle+lower)
+            return "success"
+    except Exception as e:
+        return f"Error reading {file_location}: {e}"
 
 def open_and_convert(filename, root_name):
     """this function will take to arguments file name and the root the files are in then it will open thous file read the data
@@ -71,21 +75,18 @@ def open_and_convert(filename, root_name):
         print(f"Error reading {file_path}: {e}")
 
 
-def file_opener(path) -> None:
+def file_opener(path, DIR) -> None:
     """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
      this function takes one argument which is path the path is the location of the folder the swimmer's data is in """
     for root, dirs, files in os.walk(path):
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            b=make_html(summers_details, times, avg_time, convert_time)
-            print(b)
+            print(make_html(summers_details, times, avg_time, convert_time, DIR))
 
+PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
 
-
-PATH =r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-
-
-print(file_opener(PATH))
+print(file_opener(PATH, DIR))
 end_time = time.time()
 print(end_time - start_time)
