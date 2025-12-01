@@ -65,10 +65,10 @@ def open_and_convert(filename, root_name):
                     convert_time.append((int(mint) * 60 * 100) + (int(sec) * 100) + int(milsec))
 
             raw_avg_time = statistics.mean(convert_time)
-            min_sec, milsec = str(round(raw_avg_time / 100, 2)).split('.')
+            min_sec, milsec = f"{raw_avg_time / 100:.2f}".split('.')
             mint = int(min_sec) // 60
             sec = int(min_sec) - mint * 60
-            string_time = f"{mint}:{sec}.{milsec}"
+            string_time = f"{mint}:{sec:0>2}.{milsec}"
             return label, filedata, string_time, convert_time
 
     except Exception as e:
