@@ -74,7 +74,6 @@ def open_and_convert(filename, root_name):
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
-
 def file_opener(path, DIR) -> None:
     """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
      this function takes one argument which is path the path is the location of the folder the swimmer's data is in """
