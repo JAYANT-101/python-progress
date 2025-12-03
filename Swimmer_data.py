@@ -32,7 +32,6 @@ def make_html(details, times, avg_time, raw_time, file_location):
         # os.makedirs(file_location)
         with open(f"{file_location}/{name}-{age}-{distance}-{stroke}.html", "w") as file:
             file.write(top+middle+lower)
-            return "success"
     except Exception as e:
         return f"Error reading {file_location}: {e}"
 
@@ -73,14 +72,20 @@ def open_and_convert(filename, root_name):
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
-def file_opener(path, DIR) -> None:
+def file_opener(path, DIR):
     """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
-     this function takes one argument which is path the path is the location of the folder the swimmer's data is in """
+     this function takes one argument which is path the path is the location of the folder the swimmer's data is in and
+     the out path to store the html file and also calls make_html() this return list of names ok"""
+
     for root, dirs, files in os.walk(path):
+        name_list = set()
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            print(make_html(summers_details, times, avg_time, convert_time, DIR))
+            name_list.add(summers_details[0])
+            make_html(summers_details, times, avg_time, convert_time, DIR)
+        return name_list
+    return None
 
 PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
