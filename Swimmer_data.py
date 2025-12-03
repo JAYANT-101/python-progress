@@ -1,5 +1,4 @@
 import os
-import pandas as pd
 import statistics
 import Scaler
 import time
