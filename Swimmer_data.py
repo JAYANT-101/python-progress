@@ -84,7 +84,7 @@ def file_opener(path, DIR):
             summers_details, times, avg_time, convert_time = data
             name_list.add(summers_details[0])
             make_html(summers_details, times, avg_time, convert_time, DIR)
-        return name_list
+        return sorted(name_list)
     return None
 
 PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
