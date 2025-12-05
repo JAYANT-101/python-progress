@@ -79,6 +79,7 @@ def file_opener(path, DIR):
 
     for root, dirs, files in os.walk(path):
         name_list = set()
+        sumd = {}
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
