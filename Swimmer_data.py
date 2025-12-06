@@ -3,8 +3,6 @@ import statistics
 import Scaler
 import time
 
-start_time = time.time()
-
 def make_html(details, times, avg_time, raw_time, file_location):
     """this make html"""
 
@@ -84,14 +82,12 @@ def file_opener(path, DIR):
             summers_details, times, avg_time, convert_time = data
             name = summers_details[0]
             if name not in name_dic:
-                name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.txt"]
-            name_dic[name].append(f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.txt")
+                name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html"]
+            name_dic[name].append(f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html")
         return name_dic
     return None
 
 PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
 
-print(file_opener(PATH, DIR))
-end_time = time.time()
-print(end_time - start_time)
+file_opener(PATH, DIR)
