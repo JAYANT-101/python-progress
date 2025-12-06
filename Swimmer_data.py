@@ -78,14 +78,17 @@ def file_opener(path, DIR):
      the out path to store the html file and also calls make_html() this return list of names ok"""
 
     for root, dirs, files in os.walk(path):
-        name_list = set()
-        sumd = {}
+        name_dic = {}
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            name_list.add(summers_details[0])
+            name = summers_details[0]
+            if name not in name_dic:
+                name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.txt"]
+            else:
+                name_dic[name].append(f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.txt")
             make_html(summers_details, times, avg_time, convert_time, DIR)
-        return sorted(name_list)
+        return name_dic
     return None
 
 PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
