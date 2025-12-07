@@ -80,6 +80,7 @@ def file_opener(path, DIR):
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
+            make_html(summers_details, times, avg_time,convert_time, DIR)
             name = summers_details[0]
             if name not in name_dic:
                 name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html"]
