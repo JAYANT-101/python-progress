@@ -88,7 +88,7 @@ def file_opener(path, DIR):
         return name_dic
     return None
 
-PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
-
-file_opener(PATH, DIR)
+# PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+# DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
+#
+# file_opener(PATH, DIR)
