@@ -13,5 +13,6 @@ def summer():
     data = Swimmer_data.file_opener(PATH, DIR)
     return str(data)
 
+
 if __name__ == "__main__":
     app.run()
