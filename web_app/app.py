@@ -12,6 +12,9 @@ def summer():
     DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
     data = Swimmer_data.file_opener(PATH, DIR)
     return str(sorted(data))
+@app.get("/files/<summer>")
+def get_summer_data(summer):
+    return str(data(summer))
 
 if __name__ == "__main__":
     app.run()
