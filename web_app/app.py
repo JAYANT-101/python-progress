@@ -16,5 +16,6 @@ def summer():
 def get_summer_data(summer):
     return str(data(summer))
 
+
 if __name__ == "__main__":
     app.run()
