@@ -1,6 +1,7 @@
-from flask import Flask, sessions
+from flask import Flask, session
 import Swimmer_data
 app = Flask(__name__)
+app.secret_key = "you will never guess"
 
 # @app.get("/")
 # def index():
@@ -10,13 +11,12 @@ app = Flask(__name__)
 def summer():
     PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
     DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
-    data = Swimmer_data.file_opener(PATH, DIR)
-    return str(sorted(data))
-@app.get("/files/<summer>")
-def get_summer_data(summer):
-    return str(data(summer))
+    session["data"] = Swimmer_data.file_opener(PATH, DIR)
+    return str(sorted(session["data"]))
+@app.get("/files/<summers>")
+def get_summer_data(summers):
+    return str(session["data"][summers])
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-    app.secret_key="you will never guess"
