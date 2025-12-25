@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, sessions
 import Swimmer_data
 app = Flask(__name__)
 
@@ -18,4 +18,5 @@ def get_summer_data(summer):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
+    app.secret_key="you will never guess"
