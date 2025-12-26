@@ -19,4 +19,4 @@ def get_summer_data(summers):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
