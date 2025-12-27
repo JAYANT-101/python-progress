@@ -1,11 +1,11 @@
-from flask import Flask, session
+from flask import Flask, session, render_template
 import Swimmer_data
 app = Flask(__name__)
 app.secret_key = "you will never guess"
 
 @app.get("/")
 def index():
-    return "This a place holder for the web app's opening page"
+    return render_template('index.html')
 
 def populate_session():
     if "data" not in session:
