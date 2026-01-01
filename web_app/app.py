@@ -23,6 +23,5 @@ def get_summer_data(summers):
     populate_session()
     return str(session["data"][summers])
 
-
 if __name__ == "__main__":
     app.run(debug=True)
