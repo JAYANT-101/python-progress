@@ -14,6 +14,7 @@ def populate_session():
         DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
         session["data"] = Swimmer_data.file_opener(PATH, DIR)
 
+#Show the list of summers
 @app.get("/swimmers")
 def summer():
     populate_session()
