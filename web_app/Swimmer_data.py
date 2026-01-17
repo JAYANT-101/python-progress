@@ -90,5 +90,4 @@ def file_opener(path, DIR):
 
 PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
-
 file_opener(PATH, DIR)
