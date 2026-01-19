@@ -14,7 +14,7 @@ def populate_session():
         DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
         session["data"] = Swimmer_data.file_opener(PATH, DIR)
 
-@app.get("/swimmers")
+@app.get("/swimmer")
 def summer():
     populate_session()
     return str(sorted(session["data"]))
@@ -23,6 +23,15 @@ def summer():
 def get_summer_data(summers):
     populate_session()
     return str(session["data"][summers])
+
+@app.get("/swimmers")
+def display_swimmer():
+    populate_session()
+    return render_template("select.html",
+                           title="Select swimmer",
+                           url="/showfile",
+                           select_id="swimmer",
+                           data=sorted(session["data"]))
 
 if __name__ == "__main__":
     app.run(debug=True)
