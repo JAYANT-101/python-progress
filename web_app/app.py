@@ -25,13 +25,15 @@ def get_summer_data(summers):
     return str(session["data"][summers])
 
 @app.get("/swimmers")
-def display_swimmer():
+def display_swimmers():
     populate_session()
-    return render_template("select.html",
-                           title="Select swimmer",
-                           url="/showfile",
-                           select_id="swimmer",
-                           data=sorted(session["data"]))
+    return render_template(
+        "select.html",
+        title="Select a swimmer",
+        url="/showfiles",
+        select_id="swimmer",
+        data=sorted(session["data"]),
+    )
 
 @app.post("/showfiles")
 def display_swimmers_files():
