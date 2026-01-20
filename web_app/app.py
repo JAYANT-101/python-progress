@@ -33,15 +33,17 @@ def display_swimmer():
                            select_id="swimmer",
                            data=sorted(session["data"]))
 
-@app.post("/showfile")
-def display_swimmer_file():
+@app.post("/showfiles")
+def display_swimmers_files():
     populate_session()
-    name = request.form["data"]
-    return render_template("select.html",
-                           title="Select an event",
-                           url="/showbranches",
-                           select_id="file",
-                           data=sorted(session["data"]))
+    name = request.form["swimmer"]
+    return render_template(
+        "select.html",
+        title="Select an event",
+        url="/showbarchart",
+        select_id="file",
+        data=session["data"][name],
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
