@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, request
 import Swimmer_data
 app = Flask(__name__)
 app.secret_key = "you will never guess"
@@ -31,6 +31,16 @@ def display_swimmer():
                            title="Select swimmer",
                            url="/showfile",
                            select_id="swimmer",
+                           data=sorted(session["data"]))
+
+@app.post("/showfile")
+def display_swimmer_file():
+    populate_session()
+    name = request.form["data"]
+    return render_template("select.html",
+                           title="Select an event",
+                           url="/showbranches",
+                           select_id="file",
                            data=sorted(session["data"]))
 
 if __name__ == "__main__":
