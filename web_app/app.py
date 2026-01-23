@@ -13,7 +13,7 @@ def index():
 def populate_session():
     if "data" not in session:
         PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-        DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
+        DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
         session["data"] = Swimmer_data.file_opener(PATH, DIR)
 
 #This is just a test it. Shows names of all summers
@@ -52,6 +52,10 @@ def display_swimmers_files():
         select_id="file",
         data=session["data"][name],
     )
+@app.post("/showbarchart")
+def show_bar_chart():
+    file_id = request.form["file"]
+    return render_template(file_id)
 
 if __name__ == "__main__":
     app.run(debug=True)
