@@ -3,7 +3,7 @@ import statistics
 import Scaler
 import time
 
-def make_html(details, times, avg_time, raw_time, file_location):
+def make_html(details, times, avg_time, raw_time, file_location = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"):
     """this make html"""
 
     name, age, distance, stroke = details
@@ -70,7 +70,7 @@ def open_and_convert(filename, root_name):
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
-def file_opener(path, DIR):
+def file_opener(path, DIR = None):
     """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
      this function takes one argument which is path the path is the location of the folder the swimmer's data is in and
      the out path to store the html file and also calls make_html() this return list of names ok"""
@@ -80,7 +80,8 @@ def file_opener(path, DIR):
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            make_html(summers_details, times, avg_time,convert_time, DIR)
+            if DIR is not None:
+                make_html(summers_details, times, avg_time,convert_time, DIR)
             name = summers_details[0]
             if name not in name_dic:
                 name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html"]
@@ -89,6 +90,5 @@ def file_opener(path, DIR):
     return None
 
 PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
 
-file_opener(PATH, DIR)
+file_opener(PATH)
