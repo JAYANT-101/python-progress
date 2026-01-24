@@ -52,6 +52,7 @@ def display_swimmers_files():
         select_id="file",
         data=session["data"][name],
     )
+#This function show the bar-charts
 @app.post("/showbarchart")
 def show_bar_chart():
     file_id = request.form["file"]
