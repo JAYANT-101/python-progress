@@ -58,6 +58,6 @@ def show_bar_chart():
     file_id = request.form["file"]
     return render_template(file_id)
 
-#this just star the app
+#This just star the app
 if __name__ == "__main__":
     app.run(debug=True)
