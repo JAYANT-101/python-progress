@@ -40,7 +40,7 @@ def display_swimmers():
         data=sorted(session["data"]),
     )
 
-#this gives a selection menu for selecting file based on names
+#This gives a selection menu for selecting file based on names
 @app.post("/showfiles")
 def display_swimmers_files():
     populate_session()
