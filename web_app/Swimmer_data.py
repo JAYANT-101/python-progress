@@ -1,9 +1,8 @@
 import os
 import statistics
 import Scaler
-import time
 
-def make_html(details, times, avg_time, raw_time, file_location = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"):
+def make_html(details, times, avg_time, raw_time, file_location):
     """this make html"""
 
     name, age, distance, stroke = details
@@ -81,7 +80,7 @@ def open_and_convert(filename, root_name):
     except Exception as e:
         print(f"Error reading {file_path}: {e}")
 
-def file_opener(path, DIR = None):
+def file_opener(path, DIR):
     """This function will call the open_and_convert() function this module in a for-loop to get the data to make a chart
      this function takes one argument which is path the path is the location of the folder the swimmer's data is in and
      the out path to store the html file and also calls make_html() this return list of names ok"""
