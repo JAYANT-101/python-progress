@@ -3,7 +3,7 @@ import statistics
 import Scaler
 import time
 
-def make_html(details, times, avg_time, raw_time, file_location = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"):
+def make_html(details, times, avg_time, raw_time, file_location = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"):
     """this make html"""
 
     name, age, distance, stroke = details
@@ -13,6 +13,17 @@ def make_html(details, times, avg_time, raw_time, file_location = r"C:\Users\jay
         <title>
             {name}-{age}-{distance}-{stroke}
         </title>
+     <style>
+    body {{
+      background-color: lightblue;
+    }}
+    h3 {{
+      color: navy;
+    }}
+    p{{
+    color: navy
+    }}
+    </style>
     </head>
     <body>
         <h3>{name}-{age}-{distance}-{stroke}</h3>"""
@@ -80,8 +91,7 @@ def file_opener(path, DIR = None):
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            if DIR is not None:
-                make_html(summers_details, times, avg_time,convert_time, DIR)
+            make_html(summers_details, times, avg_time,convert_time, DIR)
             name = summers_details[0]
             if name not in name_dic:
                 name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html"]
@@ -89,6 +99,7 @@ def file_opener(path, DIR = None):
         return name_dic
     return None
 
-PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-
-file_opener(PATH)
+# PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+# DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
+#
+# file_opener(PATH, DIR)

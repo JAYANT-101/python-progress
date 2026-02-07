@@ -13,6 +13,17 @@ def make_html(details, times, avg_time, raw_time, file_location):
         <title>
             {name}-{age}-{distance}-{stroke}
         </title>
+     <style>
+    body {{
+      background-color: lightblue;
+    }}
+    h3 {{
+      color: navy;
+    }}
+    p{{
+    color: navy
+    }}
+    </style>
     </head>
     <body>
         <h3>{name}-{age}-{distance}-{stroke}</h3>"""
@@ -88,7 +99,7 @@ def file_opener(path, DIR):
         return name_dic
     return None
 
-# PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-# DIR = r"C:\Users\jayan\PycharmProjects\python-progress\swimdatahtml"
-#
-# file_opener(PATH, DIR)
+PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
+
+file_opener(PATH, DIR)
