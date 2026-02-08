@@ -12,17 +12,7 @@ def make_html(details, times, avg_time, raw_time, file_location):
         <title>
             {name}-{age}-{distance}-{stroke}
         </title>
-     <style>
-    body {{
-      background-color: lightblue;
-    }}
-    h3 {{
-      color: navy;
-    }}
-    p{{
-    color: navy
-    }}
-    </style>
+    <link rel="stylesheet" href="/static/webapp.css"/>
     </head>
     <body>
         <h3>{name}-{age}-{distance}-{stroke}</h3>"""
