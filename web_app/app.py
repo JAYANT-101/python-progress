@@ -12,7 +12,7 @@ def index():
 #This populates all function with necessary data
 def populate_session():
     if "data" not in session:
-        PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
+        PATH = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\swimdata"
         DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
         session["data"] = Swimmer_data.file_opener(PATH, DIR)
 
