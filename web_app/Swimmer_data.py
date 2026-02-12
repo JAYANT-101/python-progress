@@ -48,7 +48,6 @@ def open_and_convert(filename, root_name):
             replacements = content.maketrans(":.", "  ")
             new_content = content.translate(replacements)
             mod_filedata = new_content.strip().split(',')
-
             convert_time = []
             for i in range(len(mod_filedata)):
                 times = mod_filedata[i].split(' ')
