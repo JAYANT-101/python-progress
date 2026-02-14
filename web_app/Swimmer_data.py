@@ -89,5 +89,4 @@ def file_opener(path, DIR):
 
 # PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
 # DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
-#
 # file_opener(PATH, DIR)
