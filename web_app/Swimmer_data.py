@@ -1,8 +1,23 @@
 import os
 import statistics
 import Scaler
+import json
 
-def make_html(details, times, avg_time, raw_time, file_location):
+JSONDATA = "records.json"
+
+def event_lookup(file_name):
+    """This function converts the file name to a format that can be use as key to find the records"""
+    conversion = {
+    "Free": "freestyle",
+    "Back": "backstroke",
+    "Breast": "breaststroke",
+    "Fly": "butterfly",
+    "IM": "individual medley",
+}
+    *_, distance, stroke = file_name.removesuffix(".txt").split("-")
+    return f"{distance} {conversion[stroke]}"
+
+def make_html(details, times, avg_time, raw_time, file_location, file_name):
     """this make html"""
 
     name, age, distance, stroke = details
@@ -23,13 +38,22 @@ def make_html(details, times, avg_time, raw_time, file_location):
         <svg height="30" width="400">
             <rect height="30" width="{bar_wreath}" style="fill:rgb(0,0,255);" />
         </svg>{times[i]}<br />"""
-    lower = f"""<p>Average:{avg_time}</p>
-    </body>
-</html>"""
+    with open(JSONDATA) as jf:
+        records = json.load(jf)
+    COURSES = ("LC Men", "LC Woman", "SC Men", "SC Woman")
+    times = []
+    for course in COURSES:
+        times.append(records[course][event_lookup(file_name)])
+
+    footer = f"""
+                            <p>Average time: {avg_time}</p>
+                            <p>M: {times[0]} ({times[2]})<br />W: {times[1]} ({times[3]})</p>
+                        </body>
+                    </html>"""
     try:
         # os.makedirs(file_location)
         with open(f"{file_location}/{name}-{age}-{distance}-{stroke}.html", "w") as file:
-            file.write(top+middle+lower)
+            file.write(top+middle+footer)
     except Exception as e:
         return f"Error reading {file_location}: {e}"
 
@@ -79,7 +103,7 @@ def file_opener(path, DIR):
         for file_name in files:
             data = open_and_convert(file_name, root)
             summers_details, times, avg_time, convert_time = data
-            make_html(summers_details, times, avg_time,convert_time, DIR)
+            make_html(summers_details, times, avg_time,convert_time, DIR, file_name)
             name = summers_details[0]
             if name not in name_dic:
                 name_dic[name] = [f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html"]

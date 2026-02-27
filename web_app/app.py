@@ -12,8 +12,8 @@ def index():
 #This populates all function with necessary data
 def populate_session():
     if "data" not in session:
-        PATH = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\swimdata"
-        DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
+        PATH = r"swimdata"
+        DIR = "templates"
         session["data"] = Swimmer_data.file_opener(PATH, DIR)
 
 #This is just a test it. Shows names of all summers
