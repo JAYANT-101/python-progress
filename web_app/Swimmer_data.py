@@ -110,7 +110,7 @@ def file_opener(path, DIR):
             name_dic[name].append(f"{summers_details[0]}-{summers_details[1]}-{summers_details[2]}-{summers_details[3]}.html")
         return name_dic
     return None
-
-# PATH = r"C:\Users\jayan\PycharmProjects\python-progress\swimdata"
-# DIR = r"C:\Users\jayan\PycharmProjects\python-progress\web_app\templates"
-# file_opener(PATH, DIR)
+if __name__ == "__main__":
+    PATH = r"\swimdata"
+    DIR = r"\templates"
+    file_opener(PATH, DIR)
