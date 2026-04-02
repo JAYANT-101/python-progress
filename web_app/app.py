@@ -1,7 +1,9 @@
 from flask import Flask, session, render_template, request
 import Swimmer_data
+import data_utils as du
+
 app = Flask(__name__)
-app.secret_key = "you will never guess"
+app.secret_key = "1284394123ABC@!"
 
 #fornt page
 @app.get("/")
@@ -9,54 +11,69 @@ def index():
     return render_template('index.html',
                            title="Welcome to the Swimclub",)
 
-#This populates all function with necessary data
-def populate_session():
-    if "data" not in session:
-        PATH = r"swimdata"
-        DIR = "templates"
-        session["data"] = Swimmer_data.file_opener(PATH, DIR)
 
-#This is just a test it. Shows names of all summers
-@app.get("/swimmer")
-def summer():
-    populate_session()
-    return str(sorted(session["data"]))
-
-#This function gives summer data
-@app.get("/files/<summers>")
-def get_summer_data(summers):
-    populate_session()
-    return str(session["data"][summers])
-
-#This creates a dropdown menu of names of the summers
-@app.get("/swimmers")
+#This display the name of the swimmer by the session
+@app.post("/swimmers")
 def display_swimmers():
-    populate_session()
+    session["chosen_date"] = request.form["chosen_date"]
+    data = du.swimmer_by_session(session["chosen_date"])
+    swimmers = [f"{name}-{age}" for name, age in data]
     return render_template(
         "select.html",
         title="Select a swimmer",
-        url="/showfiles",
+        url="/showevents",
         select_id="swimmer",
-        data=sorted(session["data"]),
+        data=sorted(swimmers),
+    )
+
+#This creates a dropdown menu of sessions of the summers
+@app.get("/swims")
+def display_swim_sessions():
+    data = du.session()
+    dates = [sessions[0].split(" ")[0] for sessions in data]
+    return render_template(
+        "select.html",
+        tile="Select a swim session",
+        url="/swimmers",
+        select_id="chosen_date",
+        data=dates,
     )
 
 #This gives a selection menu for selecting file based on names
-@app.post("/showfiles")
-def display_swimmers_files():
-    populate_session()
-    name = request.form["swimmer"]
+@app.post("/showevents")
+def display_swimmers_events():
+    session["name"], session["age"] = request.form["swimmer"].split("-")
+    data = du.swimmer_event_by_session(session["name"], session["age"], session["chosen_date"])
+    events = [f"{distance} {stroke}" for distance, stroke in data]
     return render_template(
         "select.html",
         title="Select an event",
         url="/showbarchart",
-        select_id="file",
-        data=session["data"][name],
+        select_id="event",
+        data=events,
     )
 #This function show the bar-charts
 @app.post("/showbarchart")
 def show_bar_chart():
-    file_id = request.form["file"]
-    return render_template(file_id)
+    distance, stroke = request.form["event"].split(" ")
+    data = du.chart_data_by_swimmer_event_session(
+        session["name"],
+        session["age"],
+        distance,
+        stroke,
+        session["chosen_date"],
+    )
+    times = [time[0] for time in data]
+    average_str, times_reversed, scaled = Swimmer_data.perform_conversions(times)
+    world_records = Swimmer_data.get_worlds(distance, stroke)
+    header = f"{session['name']} (Under {session['age']}) {distance} {stroke} - {session['chosen_date']}"
+    return render_template(
+        "chart.html",
+        title=header,
+        data=list(zip(times_reversed, scaled)),
+        average=average_str,
+        worlds=world_records,
+    )
 
 #This just star the app
 if __name__ == "__main__":
