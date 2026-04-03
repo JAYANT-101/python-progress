@@ -3,6 +3,7 @@ import Swimmer_data
 import data_utils as du
 
 app = Flask(__name__)
+#encrepty this
 app.secret_key = "1284394123ABC@!"
 
 #fornt page
