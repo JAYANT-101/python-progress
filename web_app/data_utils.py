@@ -6,7 +6,7 @@ from web_app import queries
 db_details = "CoachDB.sqlite3"
 
 def session() -> int :
-    """This function does not take any arguments and returns the distinct sessions"""
+    """This function does not take git any arguments and returns the distinct sessions"""
     with DBcm.UseDatabase(db_details) as db:
         db.execute(SQL_SESSIONS)
         return db.fetchall()
