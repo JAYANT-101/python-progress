@@ -3,7 +3,13 @@ from queries import *
 from web_app import queries
 
 #DONT CHANGE
-db_details = "CoachDB.sqlite3"
+##db_details = "CoachDB.sqlite3"
+db_details = {
+    "host": "localhost",
+    "database": "swimDB",
+    "user": "swimuser",
+    "password": "swimpasswd",
+}
 
 def session() -> int :
     """This function does not take git any arguments and returns the distinct sessions"""

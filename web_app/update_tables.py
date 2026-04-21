@@ -12,43 +12,43 @@ files = os.listdir(FOLDER)
 
 SQL_SELECT_SWIMMERS = """
     select * from swimmers
-    where name = ? and age = ?
+    where name = %s and age = %s
 """
 
 SQL_INSERT_SWIMMERS = """
     insert into swimmers
     (name, age)
     values
-    (?, ?)
+    (%s, %s)
 """
 
 SQL_SELECT_EVENTS = """
     select * from events
-    where distance = ? and stroke = ?
+    where distance = %s and stroke = %s
 """
 
 SQL_INSERT_EVENTS = """
     insert into events
     (distance, stroke)
     values
-    (?, ?)
+    (%s, %s)
 """
 
 SQL_GET_SWIMMER = """
     select id from swimmers
-    where name = ? and age = ?
+    where name = %s and age = %s
 """
 
 SQL_GET_EVENT = """
     select id from events
-    where distance = ? and stroke = ?
+    where distance = %s and stroke = %s
 """
 
 SQL_INSERT_TIMES = """
     insert into times
     (swimmer_id, event_id, time)
     values
-    (?, ?, ?)
+    (%s, %s, %s)
 """
 
 

@@ -31,7 +31,8 @@ def display_swimmers():
 @app.get("/swims")
 def display_swim_sessions():
     data = du.session()
-    dates = [sessions[0].split(" ")[0] for sessions in data]
+    ##dates = [sessions[0].split(" ")[0] for sessions in data]
+    dates = [str(sessions[0].date()) for sessions in data]
     return render_template(
         "select.html",
         tile="Select a swim session",
