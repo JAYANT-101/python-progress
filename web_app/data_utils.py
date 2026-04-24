@@ -1,6 +1,5 @@
 import DBcm
 from queries import *
-from web_app import queries
 
 #DONT CHANGE
 ##db_details = "CoachDB.sqlite3"
@@ -10,7 +9,6 @@ db_details = {
     "user": "swimuser",
     "password": "swimpasswd",
 }
-
 def session() -> int :
     """This function does not take git any arguments and returns the distinct sessions"""
     with DBcm.UseDatabase(db_details) as db:
